@@ -1,0 +1,8 @@
+# ignore all output files
+**/bin/**
+
+obj
+
+# ignore .vs folder
+.vs/
+*.log
