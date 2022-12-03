@@ -3,6 +3,7 @@
     using Common.Interfaces;
     using Riddle1;
     using Riddle2;
+    using Riddle3;
 
     using System;
 
@@ -17,6 +18,8 @@
 
                 new Riddle2a(),
                 new Riddle2b(),
+
+                new Riddle3a(),
             };
 
             foreach (ISolvable riddle in solvables)
