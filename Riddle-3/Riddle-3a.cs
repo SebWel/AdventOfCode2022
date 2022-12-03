@@ -8,7 +8,7 @@
 
         private FileStream File { get; set; }
 
-        private List<Backpack> Backpacks = new List<Backpack>();
+        private List<Rucksack> Backpacks = new List<Rucksack>();
 
         public ISolvable Solve()
         {
@@ -35,7 +35,7 @@
                 {
                     string line = stream.ReadLine();
 
-                    Backpacks.Add(new Backpack(line));
+                    Backpacks.Add(new Rucksack(line));
                 }
             }
         }
