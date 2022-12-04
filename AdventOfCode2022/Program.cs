@@ -35,14 +35,14 @@
         {
             var solvables = new List<ISolvable>
             {
-                //new Riddle01a(),
-                //new Riddle01b(),
+                new Riddle01a(),
+                new Riddle01b(),
 
-                //new Riddle02a(),
-                //new Riddle02b(),
+                new Riddle02a(),
+                new Riddle02b(),
 
-                //new Riddle03a(),
-                //new Riddle03b(),
+                new Riddle03a(),
+                new Riddle03b(),
 
                 new Riddle04a(),
                 new Riddle04b(),

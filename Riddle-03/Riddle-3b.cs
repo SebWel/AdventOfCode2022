@@ -51,7 +51,7 @@
 
         private void Calculate()
         {
-            Result = Backpacks.Sum(i => i.Score).ToString();
+            Result = $"{Backpacks.Sum(i => i.Score)}";
         }
     }
 }

@@ -40,7 +40,7 @@
 
         private void Calculate()
         {
-            Result = Groups.Count(group => group.Overlapping).ToString();
+            Result = $"{Groups.Count(group => group.Overlapping)}";
         }
     }
 }

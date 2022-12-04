@@ -50,7 +50,7 @@
 
         private void Calculate()
         {
-            Result = Calories.Max().ToString();
+            Result = $"{Calories.Max()}";
         }
     }
 }

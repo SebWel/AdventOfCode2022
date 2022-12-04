@@ -44,7 +44,7 @@
 
         private void Calculate()
         {
-            Result = Rounds.Sum(i => i.TotalScore).ToString();
+            Result = $"{Rounds.Sum(i => i.TotalScore)}";
         }
     }
 }
