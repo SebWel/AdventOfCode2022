@@ -8,9 +8,30 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Riddle-1\Riddle-1.csproj" />
-    <ProjectReference Include="..\Riddle-2\Riddle-2.csproj" />
-    <ProjectReference Include="..\Riddle-3\Riddle-3.csproj" />
+    <ProjectReference Include="..\Riddle-01\Riddle-01.csproj" />
+    <ProjectReference Include="..\Riddle-02\Riddle-02.csproj" />
+    <ProjectReference Include="..\Riddle-03\Riddle-03.csproj" />
+    <ProjectReference Include="..\Riddle-04\Riddle-04.csproj" />
+    <ProjectReference Include="..\Riddle-05\Riddle-05.csproj" />
+    <ProjectReference Include="..\Riddle-06\Riddle-06.csproj" />
+    <ProjectReference Include="..\Riddle-07\Riddle-07.csproj" />
+    <ProjectReference Include="..\Riddle-08\Riddle-08.csproj" />
+    <ProjectReference Include="..\Riddle-09\Riddle-09.csproj" />
+    <ProjectReference Include="..\Riddle-10\Riddle-10.csproj" />
+    <ProjectReference Include="..\Riddle-11\Riddle-11.csproj" />
+    <ProjectReference Include="..\Riddle-12\Riddle-12.csproj" />
+    <ProjectReference Include="..\Riddle-13\Riddle-13.csproj" />
+    <ProjectReference Include="..\Riddle-14\Riddle-14.csproj" />
+    <ProjectReference Include="..\Riddle-15\Riddle-15.csproj" />
+    <ProjectReference Include="..\Riddle-16\Riddle-16.csproj" />
+    <ProjectReference Include="..\Riddle-17\Riddle-17.csproj" />
+    <ProjectReference Include="..\Riddle-18\Riddle-18.csproj" />
+    <ProjectReference Include="..\Riddle-19\Riddle-19.csproj" />
+    <ProjectReference Include="..\Riddle-20\Riddle-20.csproj" />
+    <ProjectReference Include="..\Riddle-21\Riddle-21.csproj" />
+    <ProjectReference Include="..\Riddle-22\Riddle-22.csproj" />
+    <ProjectReference Include="..\Riddle-23\Riddle-23.csproj" />
+    <ProjectReference Include="..\Riddle-24\Riddle-24.csproj" />
   </ItemGroup>
 
 </Project>
