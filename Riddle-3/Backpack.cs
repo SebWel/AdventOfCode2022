@@ -4,24 +4,13 @@
     {
         public int Score => Duplicates.Sum(i => GetItemScore(i));
 
-        private string Compartment1 { get; set; }
-        
-        private string Compartment2 { get; set; }
+        private List<string> Compartments { get; set; }
 
         private string Duplicates { get; set; }
 
-        public Rucksack(string items)
-            : this(items.Substring(0, items.Length / 2), items.Substring(items.Length / 2))
+        public Rucksack(params string[] compartments)
         {
-            if (items.Length % 2 != 0) throw new IndexOutOfRangeException();
-            if (Compartment1.Length != Compartment2.Length) throw new IndexOutOfRangeException();
-        }
-
-        public Rucksack(string compartment1, string compartment2)
-        {
-            Compartment1 = compartment1;
-            Compartment2 = compartment2;
-
+            Compartments = compartments.ToList();
             Duplicates = FindDuplicates();
         }
 
@@ -36,7 +25,7 @@
             {
                 char c = (char)i;
 
-                if (Compartment1.Contains(c) && Compartment2.Contains(c))
+                if (Compartments.TrueForAll(item => item.Contains(c)))
                     yield return c;
             }
         }

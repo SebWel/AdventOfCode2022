@@ -35,7 +35,13 @@
                 {
                     string line = stream.ReadLine();
 
-                    Backpacks.Add(new Rucksack(line));
+                    if (line.Length % 2 != 0) throw new IndexOutOfRangeException();
+                    if (line.Length != line.Length) throw new IndexOutOfRangeException();
+
+                    string compartment1 = line.Substring(0, line.Length / 2);
+                    string compartment2 = line.Substring(line.Length / 2);
+
+                    Backpacks.Add(new Rucksack(compartment1, compartment2));
                 }
             }
         }
