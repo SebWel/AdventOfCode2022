@@ -8,7 +8,7 @@
 
         private FileStream File { get; set; }
 
-        //private List<Rucksack> Backpacks = new List<Rucksack>();
+        private List<Group> Groups = new List<Group>();
 
         public ISolvable Solve()
         {
@@ -27,22 +27,20 @@
 
         private void Parse()
         {
-            //Backpacks.Clear();
+            Groups.Clear();
 
             using (StreamReader stream = new StreamReader(File))
             {
                 while (stream.Peek() >= 0)
                 {
-                    string line = stream.ReadLine();
-
-                    //Backpacks.Add(new Rucksack(compartment1, compartment2));
+                    Groups.Add(new Group(stream.ReadLine().Split(',')));
                 }
             }
         }
 
         private void Calculate()
         {
-            Result = string.Empty;
+            Result = Groups.Count(group => group.OverlappingFull).ToString();
         }
     }
 }
