@@ -9,6 +9,7 @@
                 var first = Assignments.First();
                 var second = Assignments.Last();
 
+
                 if (first.Start.Value >= second.Start.Value && first.Start.Value <= second.End.Value
                     && first.End.Value >= second.Start.Value && first.End.Value <= second.End.Value)
                     return true;
@@ -19,6 +20,25 @@
 
                 return false;
             } 
+        }
+
+        public bool Overlapping
+        {
+            get
+            {
+                var first = Assignments.First();
+                var second = Assignments.Last();
+
+                if (first.Start.Value >= second.Start.Value && first.Start.Value <= second.End.Value
+                    || first.End.Value >= second.Start.Value && first.End.Value <= second.End.Value)
+                    return true;
+
+                if (second.Start.Value >= first.Start.Value && second.Start.Value <= first.End.Value
+                    || second.End.Value >= first.Start.Value && second.End.Value <= first.End.Value)
+                    return true;
+
+                return false;
+            }
         }
 
         private List<Range> Assignments { get; set; }
