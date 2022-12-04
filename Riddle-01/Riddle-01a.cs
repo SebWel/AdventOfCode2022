@@ -8,7 +8,7 @@
 
         private FileStream File { get; set; }
 
-        private int[] Calories { get; set; } = new int[1000];
+        private List<int> Calories { get; set; }
 
         public ISolvable Solve()
         {
@@ -29,18 +29,20 @@
         {
             using (StreamReader stream = new StreamReader(File))
             {
-                int elf = 0;
+                Calories = new List<int>();
+                int calorie = 0;
 
                 while (stream.Peek() >= 0)
                 {
                     string line = stream.ReadLine();
                     if (!string.IsNullOrEmpty(line))
                     {
-                        Calories[elf] += int.Parse(line);
+                        calorie += int.Parse(line);
                     }
                     else
                     {
-                        elf++;
+                        Calories.Add(calorie);
+                        calorie = 0;
                     }
                 }
             }
