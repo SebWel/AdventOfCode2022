@@ -12,6 +12,8 @@
         {
             Compartments = compartments.ToList();
             Duplicates = FindDuplicates();
+
+            if (Duplicates.Length != 1) throw new NotImplementedException();
         }
 
         private string FindDuplicates()
