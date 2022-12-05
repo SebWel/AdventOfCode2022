@@ -2,7 +2,7 @@
 {
     using Common.Interfaces;
 
-    public class Riddle05a : ISolvable
+    public class Riddle05b : ISolvable
     {
         public string Result { get; private set; }
 
@@ -112,13 +112,12 @@
 
         private void PerformInstruction((int move, int from, int to) instruction)
         {
+            var reverseFrom = new Stack<char>();
             for (int i = 0; i < instruction.move; i++)
-                PerformInstruction((instruction.from, instruction.to));
-        }
+                reverseFrom.Push(Stacks[instruction.from].Pop());
 
-        private void PerformInstruction((int from, int to) instruction)
-        {
-            PerformInstruction(Stacks[instruction.from], Stacks[instruction.to]);
+            for (int i = 0; i < instruction.move; i++)
+                PerformInstruction(reverseFrom, Stacks[instruction.to]);
         }
 
         private void PerformInstruction(Stack<char> from, Stack<char> to)
