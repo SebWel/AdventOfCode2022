@@ -29,7 +29,7 @@
         {
             Backpacks.Clear();
 
-            using (StreamReader stream = new StreamReader(File))
+            using (var stream = new StreamReader(File))
             {
                 while (stream.Peek() >= 0)
                 {

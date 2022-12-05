@@ -6,7 +6,7 @@
     using Riddle02;
     using Riddle03;
     using Riddle04;
-    //using Riddle05;
+    using Riddle05;
     //using Riddle06;
     //using Riddle07;
     //using Riddle08;
@@ -46,6 +46,8 @@
 
                 new Riddle04a(),
                 new Riddle04b(),
+
+                new Riddle05a(),
             };
 
             foreach (ISolvable riddle in solvables)

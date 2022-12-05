@@ -27,7 +27,7 @@
 
         private void Parse()
         {
-            using (StreamReader stream = new StreamReader(File))
+            using (var stream = new StreamReader(File))
             {
                 Calories = new List<int>();
                 int calorie = 0;
