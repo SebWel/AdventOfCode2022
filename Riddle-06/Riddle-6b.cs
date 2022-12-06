@@ -8,8 +8,6 @@
 
         private FileStream File { get; set; }
 
-        private char[] StartOfPackageMarker { get; set; }
-
         private int FirstMarkerAt { get; set; }
 
         public ISolvable Solve()
@@ -29,25 +27,27 @@
 
         private void Parse()
         {
-            int markerSize = 14;
+            Parse(14);
+        }
 
-            StartOfPackageMarker = new char[markerSize];
-            FirstMarkerAt = 0;
+        private void Parse(int markerSize)
+        {
+            var StartOfPackageMarker = new int[markerSize];
+            int cursor = 0;
 
             using (var stream = new StreamReader(File))
             {
                 while (stream.Peek() >= 0)
                 {
-                    FirstMarkerAt++;
+                    cursor++;
 
-                    char x = (char)stream.Read();
-                    int position = FirstMarkerAt % markerSize;
-                    StartOfPackageMarker[position] = x;
+                    StartOfPackageMarker[cursor % markerSize] = stream.Read();
 
-                    var y = StartOfPackageMarker.Distinct();
-
-                    if (FirstMarkerAt >= markerSize && y.Count() == markerSize)
+                    if (cursor >= markerSize && StartOfPackageMarker.Distinct().Count() == markerSize)
+                    {
+                        FirstMarkerAt = cursor;
                         return;
+                    }
                 }
             }
         }
