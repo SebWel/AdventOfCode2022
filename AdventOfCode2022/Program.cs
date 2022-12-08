@@ -16,6 +16,7 @@
                 new Riddle04(),
                 new Riddle05(),
                 new Riddle06(),
+                new Riddle07(),
             };
 
             foreach (ISolvable riddle in solvables)

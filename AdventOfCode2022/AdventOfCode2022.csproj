@@ -25,7 +25,6 @@
     <Folder Include="Riddle-10\" />
     <Folder Include="Riddle-09\" />
     <Folder Include="Riddle-08\" />
-    <Folder Include="Riddle-07\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,6 +48,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Riddle-06\Input06.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Riddle-07\Input07.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
