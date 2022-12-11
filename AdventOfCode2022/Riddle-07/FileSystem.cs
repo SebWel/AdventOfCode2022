@@ -15,7 +15,7 @@
 
         private List<IFileSystem> Children { get; set; } = new List<IFileSystem>();
 
-        public IEnumerable<Dir> ChildrenRecursiv => Children.OfType<Dir>().SelectMany(c => c.ChildrenRecursiv).Append(this);
+        public IEnumerable<Dir> Dirs => Children.OfType<Dir>().SelectMany(c => c.Dirs).Append(this);
 
         public Dir CD(string name)
         {

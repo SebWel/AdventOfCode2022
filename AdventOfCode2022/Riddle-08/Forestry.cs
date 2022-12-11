@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace AdventOfCode2022
+﻿namespace AdventOfCode2022
 {
     internal class Forestry
     {
@@ -32,6 +30,7 @@ namespace AdventOfCode2022
         public void CalculateVisibility()
         {
             // TODO: Derive the visibility from the ViewDistance
+            // Wenn View Distance in einer Richtung gleich ist mit der Entfernung zum Rand, dann ist es sichtbar.
             for (int y = 0; y < Length; y++)
             {
                 for (int x = 0; x < Length; x++)
@@ -47,16 +46,61 @@ namespace AdventOfCode2022
             {
                 for (int x = 0; x < Length; x++)
                 {
-                    var n = ViewDistanceN(x, y);
-                    var e = ViewDistanceE(x, y);
-                    var s = ViewDistanceS(x, y);
-                    var w = ViewDistanceW(x, y);
-
-                    int scenicScore = n * e * s * w;
-
                     Trees[x, y].ScenicScore = ViewDistanceN(x, y) * ViewDistanceE(x, y) * ViewDistanceS(x, y) * ViewDistanceW(x, y);
                 }
             }
+        }
+
+        public bool VisibleN(int x, int y)
+        {
+            var heigh = Trees[x, y].Heigh;
+
+            for (var n = y - 1; n >= 0; n--)
+            {
+                if (Trees[x, n].Heigh >= heigh)
+                    return false;
+            }
+
+            return true;
+        }
+
+        public bool VisibleE(int x, int y)
+        {
+            var heigh = Trees[x, y].Heigh;
+
+            for (var e = x + 1; e <= Length - 1; e++)
+            {
+                if (Trees[e, y].Heigh >= heigh)
+                    return false;
+            }
+
+            return true;
+        }
+
+        public bool VisibleS(int x, int y)
+        {
+            var heigh = Trees[x, y].Heigh;
+
+            for (var s = y + 1; s <= Length - 1; s++)
+            {
+                if (Trees[x, s].Heigh >= heigh)
+                    return false;
+            }
+
+            return true;
+        }
+
+        public bool VisibleW(int x, int y)
+        {
+            var heigh = Trees[x, y].Heigh;
+
+            for (var w = x - 1; w >= 0; w--)
+            {
+                if (Trees[w, y].Heigh >= heigh)
+                    return false;
+            }
+
+            return true;
         }
 
         public int ViewDistanceN(int x, int y)
@@ -121,70 +165,6 @@ namespace AdventOfCode2022
             }
 
             return viewDistance;
-        }
-
-        public bool VisibleN(int x, int y)
-        {
-            if (y == 0)
-                return true;
-
-            var heigh = Trees[x, y].Heigh;
-
-            for(var n = y-1; n >= 0; n--)
-            {
-                if (Trees[x, n].Heigh >= heigh)
-                    return false;
-            }
-
-            return true;
-        }
-
-        public bool VisibleE(int x, int y)
-        {
-            if (x == Length-1)
-                return true;
-
-            var heigh = Trees[x, y].Heigh;
-
-            for (var e = x + 1; e <= Length - 1; e++)
-            {
-                if (Trees[e, y].Heigh >= heigh)
-                    return false;
-            }
-
-            return true;
-        }
-
-        public bool VisibleS(int x, int y)
-        {
-            if (y == Length - 1)
-                return true;
-
-            var heigh = Trees[x, y].Heigh;
-
-            for (var s = y + 1; s <= Length - 1; s++)
-            {
-                if (Trees[x, s].Heigh >= heigh)
-                    return false;
-            }
-
-            return true;
-        }
-
-        public bool VisibleW(int x, int y)
-        {
-            if (x == 0)
-                return true;
-
-            var heigh = Trees[x, y].Heigh;
-
-            for (var w = x - 1; w >= 0; w--)
-            {
-                if (Trees[w, y].Heigh >= heigh)
-                    return false;
-            }
-
-            return true;
         }
     }
 

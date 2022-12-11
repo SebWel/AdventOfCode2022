@@ -45,8 +45,7 @@
                     case "$ ls":
                         break;
                     case string s when s.StartsWith("dir "):
-                        string dirName = s.Substring(4);
-                        currentDir.Add(new Dir { Name = dirName, Parent = currentDir });
+                        currentDir.Add(new Dir { Name = s.Substring(4), Parent = currentDir });
                         break;
                     default:
                         var split = line.Split(' ');
@@ -59,7 +58,7 @@
         private void Calculate()
         {
             int requiredSize = RootDir.Size + 30000000 - 70000000;
-            var all = RootDir.ChildrenRecursiv.OrderBy(c => c.Size).ToList();
+            var all = RootDir.Dirs.OrderBy(c => c.Size).ToList();
             
             ResultA = $"{all.Where(c => c.Size <= 100000).Sum(s => s.Size)}";
             ResultB = $"{all.First(d => d.Size > requiredSize).Size}";
