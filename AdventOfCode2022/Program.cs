@@ -24,12 +24,13 @@
 
             foreach (ISolvable riddle in solvables)
             {
+                Console.WriteLine(riddle.GetType().Name + ": ");
+
                 riddle.Solve();
 
                 if (riddle.SolutionA != riddle.ResultA) throw new Exception();
                 if (riddle.SolutionB != riddle.ResultB) throw new Exception();
-
-                Console.WriteLine(riddle.GetType().Name + ": ");
+                
                 Console.WriteLine("A: " + riddle.ResultA);
                 Console.WriteLine("B: " + riddle.ResultB);
                 Console.WriteLine();

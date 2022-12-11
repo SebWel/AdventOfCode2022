@@ -11,7 +11,7 @@
 
         public string SolutionA => "15880";
 
-        public string SolutionB => "???";
+        public string SolutionB => "PLGFKAZG";
 
         public int[] SignalStrenghts { get; set; }
 
@@ -20,6 +20,7 @@
             Construct();
             Parse();
             Calculate();
+            Render();
 
             return this;
         }
@@ -54,6 +55,26 @@
                         throw new NotImplementedException();
                 }
             }
+        }
+
+        private void Render()
+        {
+            for (int i = 0; i < 240; i++)
+            {
+                if (i % 40 == 0) Console.WriteLine();
+
+                Console.Write(IsCursorVisible(i + 1) ? '#' : '.');
+            }
+
+            Console.WriteLine();
+        }
+
+        private bool IsCursorVisible(int circle)
+        {
+            var x = SignalStrenghts[circle] / circle;
+            int linePosition = circle % 40 - 1;
+
+            return Math.Abs(x - linePosition) < 2;
         }
 
         private void Calculate()
