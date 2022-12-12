@@ -44,12 +44,11 @@
                         cycle++;
                         break;
                     case string s when s.StartsWith("addx "):
-                        int i = int.Parse(line.Split(' ')[1]);
                         SignalStrenghts[cycle] = cycle * x;
                         cycle++;
                         SignalStrenghts[cycle] = cycle * x;
                         cycle++;
-                        x += i;
+                        x += int.Parse(line.Split(' ')[1]);
                         break;
                     default:
                         throw new NotImplementedException();
