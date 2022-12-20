@@ -20,7 +20,8 @@
                 new Riddle08(),
                 new Riddle09(),
                 new Riddle10(),
-                new Riddle11(),
+                //new Riddle11(),
+                new Riddle12(),
             };
 
             foreach (ISolvable riddle in solvables)
