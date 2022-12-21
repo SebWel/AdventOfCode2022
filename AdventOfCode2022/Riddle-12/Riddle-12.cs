@@ -1,8 +1,6 @@
 ﻿namespace AdventOfCode2022
 {
     using Interfaces;
-    using System.Diagnostics;
-    using System.IO;
 
     public class Riddle12 : ISolvable
     {
@@ -12,9 +10,9 @@
 
         public Map Map { get; set; }
 
-        public string SolutionA => "31";
+        public string SolutionA => "423";
 
-        public string SolutionB => "???";
+        public string SolutionB => "416";
 
         public ISolvable Solve()
         {
@@ -41,13 +39,31 @@
                     switch (line[x])
                     {
                         case 'S':
-                            Map.AddStart(y, x);
+                            Map.Graph[x, y] = new Knot()
+                            {
+                                X = x,
+                                Y = y,
+                                Heigh = 0,
+                            };
+                            Map.Start = Map.Graph[x, y];
                             break;
                         case 'E':
-                            Map.AddEnd(y, x);
+                            Map.Graph[x, y] = new Knot()
+                            {
+                                X = x,
+                                Y = y,
+                                Heigh = 25,
+                            };
+                            Map.End = Map.Graph[x, y];
+
                             break;
                         default:
-                            Map.Add(y, x, line[x] - 'a');
+                            Map.Graph[x,y] = new Knot()
+                            {
+                                X = x,
+                                Y = y,
+                                Heigh = line[x] - 'a',
+                            };
                             break;
                     }
                 }
@@ -57,17 +73,36 @@
 
         private void Calculate()
         {
-            var watch = new Stopwatch();
-            watch.Start();
+            Map.Dijkstra();
+            Map.Write();
+            ResultA = $"{Map.End.Distance}";
 
-            Console.Clear();
-            var paths = Map.Start.FindEnd(Map, new ElevationPath { Elevations = new() }.Add(Map.Start)).ToList();
+            Map.Start = Map.Graph[0, 13];
+            Map.Dijkstra();
+            Map.Write();
+            ResultB = $"{Map.End.Distance}";
 
-            watch.Stop();
-            Console.WriteLine(watch.Elapsed);
+            //int shortestDistance = int.MaxValue;
+            //int i = 0;
+            //foreach (var knot in Map.Graph)
+            //{
+            //    if (knot.Heigh == 0 && knot.X < 14)
+            //    {
+            //        i++;
 
-            ResultA = $"{paths.Min(p => p.Elevations.Count()) - 1}";
-            ResultB = $"{SolutionB}";
+            //        Map.Start = knot;
+            //        Map.Dijkstra();
+
+            //        if (Map.End.Distance < shortestDistance)
+            //        {
+            //            shortestDistance = Map.End.Distance;
+            //            Console.WriteLine(i + ": (" + Map.Start.X + " | " + Map.Start.Y + ") " + Map.End.Distance);
+            //            Map.Write();
+            //        }
+            //    }
+            //}
+
+            //ResultB = $"{shortestDistance}";
         }
     }
 }

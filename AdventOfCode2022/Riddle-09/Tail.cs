@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode2022
 {
-    public class Tail : Knot
+    public class Tail : RopeKnot
     {
         public List<Coordinate> VisitedCoordinates { get; set; }
 

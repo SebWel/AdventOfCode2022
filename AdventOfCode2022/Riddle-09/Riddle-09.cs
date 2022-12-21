@@ -13,7 +13,7 @@
 
         public string SolutionB => "2793";
 
-        public Knot Head { get; set; }
+        public RopeKnot Head { get; set; }
 
         public Tail Tail1 { get; set; }
 
@@ -44,7 +44,7 @@
 
         private void Construct()
         {
-            Head = new Knot { Parent = null };
+            Head = new RopeKnot { Parent = null };
             Tail1 = new Tail { Parent = Head, VisitedCoordinates = new List<Coordinate> { new Coordinate() } };
             Tail2 = new Tail { Parent = Tail1 };
             Tail3 = new Tail { Parent = Tail2 };

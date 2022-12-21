@@ -2,81 +2,110 @@
 {
     public class Map
     {
-        public int StartX;
+        public Knot[,] Graph { get; set; }
 
-        public int StartY;
+        public Queue<Knot> Todo { get; set; }
 
-        public int EndX;
+        public Knot Start { get; set; }
 
-        public int EndY;
-
-        public Elevation[,] Elevations2 { get; set; }
-
-        public Elevation Start => Elevations2[StartX, StartY];
-
-        public Elevation End => Elevations2[EndX, EndY];
+        public Knot End { get; set; }
 
         public Map()
         {
-            Elevations2 = new Elevation[144, 41];
+            Graph = new Knot[144, 41];
+            Todo = new Queue<Knot>();
         }
 
-        public void AddStart(int y, int x)
+        public void Init()
         {
-            Add(y, x, 0);
+            Todo.Clear();
 
-            StartX = x;
-            StartY = y;
+            foreach(var knot in Graph)
+            {
+                knot.Distance = 10_000;
+                knot.Predecessor = null;
+                Todo.Enqueue(knot);
+            }
+
+            Start.Distance = 0;
         }
 
-        public void AddEnd(int y, int x)
+        public void Dijkstra()
         {
-            Add(y, x, 25);
+            Init();
 
-            EndX = x;
-            EndY = y;
+            while (Todo.Count != 0)
+            {
+                Todo = new Queue<Knot>(Todo.OrderBy(x => x.Distance));
+                var current = Todo.Dequeue();
+
+                if (End == current)
+                    return;
+
+                foreach (var neighbor in Neighbors(current))
+                {
+                    if (Todo.Contains(neighbor))
+                    {
+                        var alternativWay = current.Distance + 1;
+
+                        if (alternativWay < neighbor.Distance)
+                        {
+                            neighbor.Distance = alternativWay;
+                            neighbor.Predecessor = current;
+                        }
+                    }
+                }
+            }
         }
 
-        public void Add(int y, int x, int heigh)
+        public IEnumerable<Knot> Neighbors(Knot knot)
         {
-            Elevations2[x, y] = new Elevation() { X = x, Y = y, Heigh = heigh };
-        }
+            var east = knot.X != Graph.GetLength(0) - 1 ? Graph[knot.X + 1, knot.Y] : null;
+            var south = knot.Y != Graph.GetLength(1) - 1 ? Graph[knot.X, knot.Y + 1] : null;
+            var north = knot.Y != 0 ? Graph[knot.X, knot.Y - 1] : null;
+            var west = knot.X != 0 ? Graph[knot.X - 1, knot.Y] : null;
 
-        public IEnumerable<Elevation> FindPossibilities(int currentX, int currentY, int currentHeigh, ElevationPath path)
-        {
-            var north = currentY != 0 ? Elevations2[currentX, currentY - 1] : null;
-            var south = currentY != Elevations2.GetLength(1) ? Elevations2[currentX, currentY + 1] : null;
-            var east = currentX != Elevations2.GetLength(0) ? Elevations2[currentX + 1, currentY] : null;
-            var west = currentX != 0 ? Elevations2[currentX - 1, currentY] : null;
-
-            if (Elevation.Climbable(currentHeigh, path, east))
+            if (east is not null && east.Heigh - knot.Heigh <= 1)
                 yield return east;
 
-            if (Elevation.Climbable(currentHeigh, path, south))
+            if (south is not null && south.Heigh - knot.Heigh <= 1)
                 yield return south;
 
-            if (Elevation.Climbable(currentHeigh, path, north))
+            if (north is not null && north.Heigh - knot.Heigh <= 1)
                 yield return north;
 
-            if (Elevation.Climbable(currentHeigh, path, west))
+            if (west is not null && west.Heigh - knot.Heigh <= 1)
                 yield return west;
         }
 
-        public void Write(ElevationPath path)
+        public Queue<Knot> ShortestDistance()
         {
-            //Console.Clear();
-            //Thread.Sleep(100);
-            Console.CursorVisible = false;
+            Queue<Knot> shotestDistance = new();
 
-            for (int y = 0; y < 40 /* 40/5 */; y++)
+            var knot = End;
+            while (knot is not null)
             {
-                for (int x = 0; x < 144 /* 144/8 */; x++)
+                shotestDistance.Enqueue(knot);
+                knot = knot.Predecessor;
+            }
+
+            return shotestDistance;
+        }
+
+        public void Write()
+        {
+            var shortestDistance = ShortestDistance();
+
+            Console.WriteLine();
+
+            for (int y = 0; y < 41; y++)
+            {
+                for (int x = 0; x < 144; x++)
                 {
-                    var element = Elevations2[x,y];
+                    var element = Graph[x,y];
 
-                    Console.ForegroundColor = path.Elevations.Contains(element) ? ConsoleColor.Red : ConsoleColor.White;
+                    Console.ForegroundColor = shortestDistance.Contains(element) ? ConsoleColor.Red : ConsoleColor.White;
 
-                    Console.SetCursorPosition(0 + x, 0 + y);
                     Console.Write((char)(element.Heigh + 'a'));
                 }
                 Console.WriteLine();

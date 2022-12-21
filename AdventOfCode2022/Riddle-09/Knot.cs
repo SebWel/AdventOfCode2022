@@ -1,7 +1,7 @@
 ﻿namespace AdventOfCode2022
 {
-    public class Knot : Coordinate
+    public class RopeKnot : Coordinate
     {
-        public Knot Parent { get; set; }
+        public RopeKnot Parent { get; set; }
     }
 }
