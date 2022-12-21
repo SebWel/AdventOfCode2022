@@ -10,18 +10,19 @@
         {
             var solvables = new List<ISolvable>
             {
-                new Riddle01(), 
-                new Riddle02(),
-                new Riddle03(),
-                new Riddle04(),
-                new Riddle05(),
-                new Riddle06(),
-                new Riddle07(),
-                new Riddle08(),
-                new Riddle09(),
-                new Riddle10(),
-                //new Riddle11(),
-                new Riddle12(),
+                //new Riddle01(), 
+                //new Riddle02(),
+                //new Riddle03(),
+                //new Riddle04(),
+                //new Riddle05(),
+                //new Riddle06(),
+                //new Riddle07(),
+                //new Riddle08(),
+                //new Riddle09(),
+                //new Riddle10(),
+                ////new Riddle11(),
+                //new Riddle12(),
+                new Riddle13(),
             };
 
             foreach (ISolvable riddle in solvables)
