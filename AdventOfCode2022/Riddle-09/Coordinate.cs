@@ -17,9 +17,19 @@
             return IsTouching(X, other.X) && IsTouching(Y, other.Y);
         }
 
-        private bool IsTouching (int a, int b)
+        private static bool IsTouching (int a, int b)
         {
             return Math.Abs(a - b) < 2;
+        }
+
+        public int Distance(Coordinate other)
+        {
+            return Distance(this, other);
+        }
+
+        public static int Distance(Coordinate a, Coordinate b)
+        {
+            return Math.Abs(a.X - b.X) + Math.Abs(a.Y - b.Y);
         }
 
         public override bool Equals(object obj) => Equals(obj as Coordinate);
