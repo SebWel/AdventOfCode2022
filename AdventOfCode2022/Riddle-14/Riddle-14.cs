@@ -10,7 +10,7 @@
 
         public string SolutionA => "618";
 
-        public string SolutionB => "???";
+        public string SolutionB => "26358";
 
         public CaveMap Map { get; set; }
 
@@ -60,8 +60,10 @@
 
         private void Calculate()
         {
-            ResultA = $"{Map.Trickle()}";
-            ResultB = $"{SolutionB}";
+            Map.Trickle(out int a, out int b);
+
+            ResultA = $"{a}";
+            ResultB = $"{b}";
         }
     }
 }
