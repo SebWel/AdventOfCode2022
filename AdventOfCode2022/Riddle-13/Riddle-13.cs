@@ -8,7 +8,7 @@
 
         public string ResultB { get; private set; }
 
-        public string SolutionA => "13";
+        public string SolutionA => "5806";
 
         public string SolutionB => "???";
 
